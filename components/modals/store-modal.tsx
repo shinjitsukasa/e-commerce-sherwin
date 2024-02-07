@@ -1,6 +1,7 @@
 "use client";
 
 import * as z from "zod";
+import axios from "axios";
 
 import { useStoreModal } from "@/hooks/use-store-modal";
 import { Modal } from "../ui/modal";
@@ -18,7 +19,7 @@ const formSchema = z.object({
 export const StoreModal = () => {
   const storeModal = useStoreModal();
 
-	const [loading, setLoading] = useState();
+	const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -30,8 +31,9 @@ export const StoreModal = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
 			setLoading(true);
-
-			const response = await axios.post('/api/stores', values);
+			
+      const response = await axios.post('/api/stores', values);
+      console.log(response.data);
 		} catch (error) {
 			console.log(error);
 		} finally {
