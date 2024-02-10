@@ -18,7 +18,7 @@ const SetupPage = () => {
   return (
     <div className="p-4">
 			{/* <UserButton afterSignOutUrl="/"/> */}
-      Root Page
+      {/* Root Page */}
 		</div>
   );
 }
